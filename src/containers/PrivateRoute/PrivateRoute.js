@@ -1,10 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { withRouter, Route, Redirect } from 'react-router-dom';
-import { recieveAuth } from '../../modules/users/actions';
-import * as fromUsers from '../../modules/users/reducer';
+import { Route, Redirect } from 'react-router-dom';
+import { recieveAuth, isAuthenticated } from '../../modules/users';
 
-class PrivateRoute extends React.Component {
+export class PrivateRoute extends React.Component {
+  static propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired,
+    component: PropTypes.node.isRequired,
+    recieveAuth: PropTypes.func.isRequired,
+  };
+
   componentDidMount() {
     this.props.recieveAuth();
   }
@@ -32,17 +38,13 @@ class PrivateRoute extends React.Component {
   }
 }
 
-console.log(fromUsers);
-
 const mapStateToProps = state => ({
-  isAuthenticated: fromUsers.isAuthenticated(state.users),
+  isAuthenticated: isAuthenticated(state.users),
 });
 
 const mapDispatchToProps = { recieveAuth };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(PrivateRoute),
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PrivateRoute);

@@ -5,6 +5,8 @@ import Root from './containers/Root';
 import configureStore from './store';
 import registerServiceWorker from './registerServiceWorker';
 
+import 'typeface-roboto';
+
 const store = configureStore();
 
 const render = Component => {
@@ -23,4 +25,5 @@ if (module.hot) {
     render(Root);
   });
 }
+
 registerServiceWorker();
