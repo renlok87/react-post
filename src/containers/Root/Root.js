@@ -9,7 +9,7 @@ import Page404 from '../../components/Page404';
 
 // Use React Loadable for routes
 import Home from '../Home';
-import PostPage from '../PostPage';
+import TweetPage from '../TweetPage';
 import Login from '../Login';
 
 const Root = () => (
@@ -18,7 +18,7 @@ const Root = () => (
       <Layout>
         <Switch>
           <PrivateRoute exact path="/" component={Home} />
-          <Route path="/post/:postId" component={PostPage} />
+          <Route path="/tweet/:tweetId" component={TweetPage} />
           <Route path="/login" component={Login} />
           <Route path="/404" component={Page404} />
           <Redirect to="/404" />

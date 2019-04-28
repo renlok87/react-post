@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import PostInput from '../../components/PostInput';
+import TweetInput from '../../components/TweetInput';
 import { logout, getUserById } from '../../modules/users';
-import { createPost, getPostById, getAllPosts } from '../../modules/posts';
-import Post from '../../components/Post';
+import { createTweet, getTweetById, getAllTweets } from '../../modules/tweets';
+import Tweet from '../../components/Tweet';
 import Timeline from '../../components/Timeline';
 import sortByDatetime from '../../utils/datetime';
 
@@ -14,27 +14,27 @@ export class Home extends React.Component {
       id: PropTypes.string.isRequired,
       username: PropTypes.string,
     }).isRequired,
-    posts: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-    createPost: PropTypes.func.isRequired,
+    tweets: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+    createTweet: PropTypes.func.isRequired,
   };
 
   onSubmit = text => {
     const {
-      createPost,
+      createTweet,
       activeUser: { id: userId },
     } = this.props;
-    createPost({ userId, text });
+    createTweet({ userId, text });
   };
 
   render() {
-    const { posts } = this.props;
+    const { tweets } = this.props;
 
     return (
       <React.Fragment>
-        <PostInput onSubmit={this.onSubmit} />
+        <TweetInput onSubmit={this.onSubmit} />
         <Timeline>
-          {posts.map(post => (
-            <Post {...post} key={post.id} />
+          {tweets.map(tweet => (
+            <Tweet {...tweet} key={tweet.id} />
           ))}
         </Timeline>
       </React.Fragment>
@@ -44,16 +44,16 @@ export class Home extends React.Component {
 
 const mapStateToProps = state => ({
   activeUser: getUserById(state.users, state.users.active),
-  posts: getAllPosts(state.posts)
-    .map(post => ({
-      ...post,
-      repliedPost: getPostById(state.posts, post.replyToId),
-      user: getUserById(state.users, post.userId),
+  tweets: getAllTweets(state.tweets)
+    .map(tweet => ({
+      ...tweet,
+      repliedTweet: getTweetById(state.tweets, tweet.replyToId),
+      user: getUserById(state.users, tweet.userId),
     }))
     .sort(sortByDatetime),
 });
 
-const mapDispatchToProps = { logout, createPost };
+const mapDispatchToProps = { logout, createTweet };
 
 export default connect(
   mapStateToProps,

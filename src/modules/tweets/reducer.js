@@ -8,7 +8,7 @@ export const initialState = {
 
 export function allIds(state = initialState.allIds, action) {
   switch (action.type) {
-    case actions.CREATE_POST:
+    case actions.CREATE_TWEET:
       return [...state, action.payload.id];
     default:
       return state;
@@ -17,7 +17,7 @@ export function allIds(state = initialState.allIds, action) {
 
 export function byId(state = initialState.byId, action) {
   switch (action.type) {
-    case actions.CREATE_POST:
+    case actions.CREATE_TWEET:
       return {
         ...state,
         [action.payload.id]: action.payload,
@@ -33,8 +33,9 @@ export default combineReducers({
 });
 
 // Selectors
-export const getPostById = (state, id) => state.byId[id];
+// Probably better to use Reselect
+export const getTweetById = (state, id) => state.byId[id];
 export const getRepliesById = (state, id) =>
-  getAllPosts(state).filter(post => post.replyToId === id);
-export const getAllPosts = state =>
-  state.allIds.map(id => getPostById(state, id));
+  getAllTweets(state).filter(tweet => tweet.replyToId === id);
+export const getAllTweets = state =>
+  state.allIds.map(id => getTweetById(state, id));

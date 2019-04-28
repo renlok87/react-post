@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PostInput renders correctly 1`] = `
+exports[`TweetInput renders correctly 1`] = `
 <div
-  className="MuiPaper-root-3 MuiPaper-elevation2-7 MuiPaper-rounded-4 PostInput-paper-1"
+  className="MuiPaper-root-3 MuiPaper-elevation2-7 MuiPaper-rounded-4 TweetInput-paper-1"
 >
   <form
     autoComplete="off"
@@ -45,7 +45,7 @@ exports[`PostInput renders correctly 1`] = `
         className="MuiGrid-item-48"
       >
         <button
-          className="MuiButtonBase-root-168 MuiButton-root-144 MuiButton-text-146 MuiButton-textPrimary-147 MuiButton-outlined-152 PostInput-tweetButton-2"
+          className="MuiButtonBase-root-168 MuiButton-root-144 MuiButton-text-146 MuiButton-textPrimary-147 MuiButton-outlined-152 TweetInput-tweetButton-2"
           disabled={false}
           onBlur={[Function]}
           onFocus={[Function]}
@@ -63,7 +63,7 @@ exports[`PostInput renders correctly 1`] = `
           <span
             className="MuiButton-label-145"
           >
-            Post
+            Tweet
           </span>
           <span
             className="MuiTouchRipple-root-171"

@@ -35,14 +35,14 @@ const styles = theme => ({
   },
 });
 
-const Post = ({
+const Tweet = ({
   classes,
   id,
   text,
   createdAt,
   user: { username },
   replyToId,
-  repliedPost,
+  repliedTweet,
   highlighted,
 }) => {
   const image = text.match(imageUrlRe);
@@ -58,7 +58,7 @@ const Post = ({
         <CardMedia
           className={classes.cardMedia}
           image={image[0]}
-          title="An post's image"
+          title="An tweet's image"
         />
       )}
 
@@ -74,18 +74,18 @@ const Post = ({
         }
         title={username}
         subheader={
-          <Link to={`/post/${id}`} className={classes.link}>
+          <Link to={`/tweet/${id}`} className={classes.link}>
             {moment(createdAt).fromNow()}
           </Link>
         }
       />
 
       <CardContent className={classes.content}>
-        {repliedPost && (
+        {repliedTweet && (
           <Typography variant="caption">
             In reply to{' '}
-            <Link to={`/post/${replyToId}`} className={classes.link}>
-              <cite>{repliedPost.text}</cite>
+            <Link to={`/tweet/${replyToId}`} className={classes.link}>
+              <cite>{repliedTweet.text}</cite>
             </Link>
           </Typography>
         )}
@@ -110,7 +110,7 @@ const Post = ({
 
       {!highlighted && (
         <CardActions>
-          <Button color="primary" component={Link} to={`/post/${id}`}>
+          <Button color="primary" component={Link} to={`/tweet/${id}`}>
             Reply
           </Button>
         </CardActions>
@@ -119,7 +119,7 @@ const Post = ({
   );
 };
 
-Post.propTypes = {
+Tweet.propTypes = {
   classes: PropTypes.object.isRequired,
   id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
@@ -129,16 +129,16 @@ Post.propTypes = {
     username: PropTypes.string.isRequired,
   }).isRequired,
   replyToId: PropTypes.string,
-  repliedPost: PropTypes.shape({
+  repliedTweet: PropTypes.shape({
     text: PropTypes.string.isRequired,
   }),
   highlighted: PropTypes.bool,
 };
 
-Post.defaultProps = {
+Tweet.defaultProps = {
   replyToId: null,
-  repliedPost: null,
+  repliedTweet: null,
   highlighted: false,
 };
 
-export default withStyles(styles)(Post);
+export default withStyles(styles)(Tweet);

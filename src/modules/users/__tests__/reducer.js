@@ -13,7 +13,7 @@ jest.mock('uuid', () => ({
   v4: () => '<id>',
 }));
 
-describe('posts reducer', () => {
+describe('tweets reducer', () => {
   it('returns initial state', () => {
     expect(reducer(undefined, {})).toEqual(initialState);
     expect(active(undefined, {})).toEqual(initialState.active);

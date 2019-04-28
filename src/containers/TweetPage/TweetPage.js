@@ -4,64 +4,64 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { getUserById } from '../../modules/users';
 import {
-  createPost,
-  getPostById,
+  createTweet,
+  getTweetById,
   getRepliesById,
-} from '../../modules/posts';
-import { getPostMeta } from '../../modules';
-import PostInput from '../../components/PostInput';
-import Post from '../../components/Post';
+} from '../../modules/tweets';
+import { getTweetMeta } from '../../modules';
+import TweetInput from '../../components/TweetInput';
+import Tweet from '../../components/Tweet';
 import Timeline from '../../components/Timeline';
 
-export class PostPage extends React.Component {
+export class TweetPage extends React.Component {
   static propTypes = {
     match: PropTypes.shape({
       params: PropTypes.shape({
-        post: PropTypes.string.isRequired,
+        tweetId: PropTypes.string.isRequired,
       }).isRequired,
     }).isRequired,
     activeUser: PropTypes.shape({
       id: PropTypes.string.isRequired,
       username: PropTypes.string.isRequired,
     }),
-    post: PropTypes.object.isRequired,
+    tweet: PropTypes.object.isRequired,
     replies: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-    createPost: PropTypes.func.isRequired,
+    createTweet: PropTypes.func.isRequired,
   };
 
   onSubmit = text => {
     const {
       match: { params },
       activeUser,
-      createPost,
+      createTweet,
     } = this.props;
 
-    createPost({
+    createTweet({
       userId: activeUser.id,
-      replyToId: params.post,
+      replyToId: params.tweetId,
       text,
     });
   };
 
   render() {
-    const { post, replies, activeUser } = this.props;
+    const { tweet, replies, activeUser } = this.props;
     const hasReplies = replies.length > 0;
 
-    if (!post) {
+    if (!tweet) {
       return <Redirect to="/404" />;
     }
 
     return (
       <React.Fragment>
-        <Post {...post} highlighted />
+        <Tweet {...tweet} highlighted />
         {hasReplies && (
           <Timeline>
             {replies.map(reply => (
-              <Post {...reply} key={reply.id} />
+              <Tweet {...reply} key={reply.id} />
             ))}
           </Timeline>
         )}
-        {activeUser && <PostInput onSubmit={this.onSubmit} />}
+        {activeUser && <TweetInput onSubmit={this.onSubmit} />}
       </React.Fragment>
     );
   }
@@ -69,15 +69,15 @@ export class PostPage extends React.Component {
 
 const mapStateToProps = (state, { match: { params } }) => ({
   activeUser: getUserById(state.users, state.users.active),
-  post: getPostMeta(state, getPostById(state.posts, params.post)),
-  replies: getRepliesById(state.posts, params.post).map(post =>
-    getPostMeta(state, post),
+  tweet: getTweetMeta(state, getTweetById(state.tweets, params.tweetId)),
+  replies: getRepliesById(state.tweets, params.tweetId).map(tweet =>
+    getTweetMeta(state, tweet),
   ),
 });
 
-const mapDispatchToProps = { createPost };
+const mapDispatchToProps = { createTweet };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(PostPage);
+)(TweetPage);

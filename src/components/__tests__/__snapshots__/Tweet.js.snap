@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Post renders correctly 1`] = `
+exports[`Tweet renders correctly 1`] = `
 <li
-  className="MuiPaper-root-6 MuiPaper-elevation1-9 MuiPaper-rounded-7 MuiCard-root-5 Post-card-1"
+  className="MuiPaper-root-6 MuiPaper-elevation1-9 MuiPaper-rounded-7 MuiCard-root-5 Tweet-card-1"
 >
   <div
     className="MuiCardHeader-root-33"
@@ -35,7 +35,7 @@ exports[`Post renders correctly 1`] = `
     </div>
   </div>
   <div
-    className="MuiCardContent-root-67 Post-content-3"
+    className="MuiCardContent-root-67 Tweet-content-3"
   >
     <h3
       className="MuiTypography-root-42 MuiTypography-subheading-49"
@@ -53,9 +53,9 @@ exports[`Post renders correctly 1`] = `
 </li>
 `;
 
-exports[`Post renders highlighted post 1`] = `
+exports[`Tweet renders highlighted tweet 1`] = `
 <div
-  className="MuiPaper-root-6 MuiPaper-elevation8-16 MuiPaper-rounded-7 MuiCard-root-5 Post-card-1"
+  className="MuiPaper-root-6 MuiPaper-elevation8-16 MuiPaper-rounded-7 MuiCard-root-5 Tweet-card-1"
 >
   <div
     className="MuiCardHeader-root-33"
@@ -88,7 +88,7 @@ exports[`Post renders highlighted post 1`] = `
     </div>
   </div>
   <div
-    className="MuiCardContent-root-67 Post-content-3"
+    className="MuiCardContent-root-67 Tweet-content-3"
   >
     <h1
       className="MuiTypography-root-42 MuiTypography-display1-46"
@@ -103,9 +103,9 @@ exports[`Post renders highlighted post 1`] = `
 </div>
 `;
 
-exports[`Post renders reply 1`] = `
+exports[`Tweet renders reply 1`] = `
 <li
-  className="MuiPaper-root-6 MuiPaper-elevation1-9 MuiPaper-rounded-7 MuiCard-root-5 Post-card-1"
+  className="MuiPaper-root-6 MuiPaper-elevation1-9 MuiPaper-rounded-7 MuiCard-root-5 Tweet-card-1"
 >
   <div
     className="MuiCardHeader-root-33"
@@ -138,13 +138,13 @@ exports[`Post renders reply 1`] = `
     </div>
   </div>
   <div
-    className="MuiCardContent-root-67 Post-content-3"
+    className="MuiCardContent-root-67 Tweet-content-3"
   >
     <span
       className="MuiTypography-root-42 MuiTypography-caption-52"
     >
       In reply to
-
+       
     </span>
     <h3
       className="MuiTypography-root-42 MuiTypography-subheading-49"

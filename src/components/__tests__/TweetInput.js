@@ -1,10 +1,10 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import PostInput from '../PostInput';
+import TweetInput from '../TweetInput';
 
-describe('PostInput', () => {
+describe('TweetInput', () => {
   it('renders correctly', () => {
-    const component = renderer.create(<PostInput />);
+    const component = renderer.create(<TweetInput />);
     expect(component.toJSON()).toMatchSnapshot();
   });
 });

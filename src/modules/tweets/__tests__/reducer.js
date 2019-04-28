@@ -2,8 +2,8 @@ import reducer, {
   initialState,
   allIds,
   byId,
-  getPostById,
-  getAllPosts,
+  getTweetById,
+  getAllTweets,
   getRepliesById,
 } from '../reducer';
 import * as actions from '../actions';
@@ -14,22 +14,22 @@ jest.mock('uuid', () => ({
 
 jest.mock('moment', () => () => '<datetime>');
 
-describe('posts reducer', () => {
+describe('tweets reducer', () => {
   it('returns initial state', () => {
     expect(reducer(undefined, {})).toEqual(initialState);
     expect(allIds(undefined, {})).toEqual(initialState.allIds);
     expect(byId(undefined, {})).toEqual(initialState.byId);
   });
 
-  it('create new post', () => {
-    const payload = { text: 'Test post' };
-    const state = reducer(initialState, actions.createPost(payload));
+  it('create new tweet', () => {
+    const payload = { text: 'Test tweet' };
+    const state = reducer(initialState, actions.createTweet(payload));
     expect(state).toMatchSnapshot();
   });
 });
 
-describe('posts selectors', () => {
-  it('gets posts by id', () => {
+describe('tweets selectors', () => {
+  it('gets tweets by id', () => {
     const user = { id: 123, username: 'user' };
     const state = {
       byId: {
@@ -37,13 +37,13 @@ describe('posts selectors', () => {
       },
     };
 
-    expect(getPostById(state, user.id)).toEqual(user);
-    expect(getPostById(state, 321)).toBeUndefined();
+    expect(getTweetById(state, user.id)).toEqual(user);
+    expect(getTweetById(state, 321)).toBeUndefined();
   });
 
-  it('gets all posts', () => {
-    const tweet1 = { id: 1, text: 'post 1' };
-    const tweet2 = { id: 2, text: 'post 2' };
+  it('gets all tweets', () => {
+    const tweet1 = { id: 1, text: 'tweet 1' };
+    const tweet2 = { id: 2, text: 'tweet 2' };
     const state = {
       allIds: [tweet1.id, tweet2.id],
       byId: {
@@ -52,20 +52,20 @@ describe('posts selectors', () => {
       },
     };
 
-    expect(getAllPosts(state)).toEqual([tweet1, tweet2]);
+    expect(getAllTweets(state)).toEqual([tweet1, tweet2]);
   });
 
   it('gets replies by id', () => {
-    const post = { id: 1, text: 'post 1' };
-    const reply = { id: 2, text: 'post 2', replyToId: 1 };
+    const tweet = { id: 1, text: 'tweet 1' };
+    const reply = { id: 2, text: 'tweet 2', replyToId: 1 };
     const state = {
-      allIds: [post.id, reply.id],
+      allIds: [tweet.id, reply.id],
       byId: {
-        [post.id]: post,
+        [tweet.id]: tweet,
         [reply.id]: reply,
       },
     };
 
-    expect(getRepliesById(state, post.id)).toEqual([reply]);
+    expect(getRepliesById(state, tweet.id)).toEqual([reply]);
   });
 });

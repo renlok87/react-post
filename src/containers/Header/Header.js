@@ -38,7 +38,7 @@ export const Header = ({ classes, isAuthenticated, user, onLogout }) => (
       )}
       <Typography variant="title" color="inherit" className={classes.flex}>
         <Link to="/" className={classes.link}>
-          {user ? user.username : 'React Post'}
+          {user ? user.username : 'React Twitter'}
         </Link>
       </Typography>
       {isAuthenticated ? (

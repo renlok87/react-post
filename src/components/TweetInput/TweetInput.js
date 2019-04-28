@@ -6,12 +6,12 @@ const styles = theme => ({
   paper: {
     padding: theme.spacing.unit * 2,
   },
-  postButton: {
+  tweetButton: {
     marginTop: theme.spacing.unit,
   },
 });
 
-class PostInput extends React.Component {
+class TweetInput extends React.Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     onSubmit: PropTypes.func,
@@ -55,9 +55,9 @@ class PostInput extends React.Component {
                 variant="outlined"
                 color="primary"
                 type="submit"
-                className={classes.postButton}
+                className={classes.tweetButton}
               >
-                Post
+                Tweet
               </Button>
             </Grid>
           </Grid>
@@ -67,4 +67,4 @@ class PostInput extends React.Component {
   }
 }
 
-export default withStyles(styles)(PostInput);
+export default withStyles(styles)(TweetInput);

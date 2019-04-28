@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Post from '../Post';
+import Tweet from '../Tweet';
 
 jest.mock('moment', () => time => ({
   fromNow: () => `${time} ago`,
@@ -8,8 +8,8 @@ jest.mock('moment', () => time => ({
 
 jest.mock('react-router-dom');
 
-describe('Post', () => {
-  const post = {
+describe('Tweet', () => {
+  const tweet = {
     id: '123',
     text: 'Hello, world!',
     createdAt: '1',
@@ -30,18 +30,18 @@ describe('Post', () => {
   };
 
   it('renders correctly', () => {
-    const component = renderer.create(<Post {...post} />);
+    const component = renderer.create(<Tweet {...tweet} />);
     expect(component.toJSON()).toMatchSnapshot();
   });
 
-  it('renders highlighted post', () => {
-    const component = renderer.create(<Post {...post} highlighted />);
+  it('renders highlighted tweet', () => {
+    const component = renderer.create(<Tweet {...tweet} highlighted />);
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   it('renders reply', () => {
     const component = renderer.create(
-      <Post {...reply} replyToId={post.id} repliedPost={post} />,
+      <Tweet {...reply} replyToId={tweet.id} repliedTweet={tweet} />,
     );
     expect(component.toJSON()).toMatchSnapshot();
   });

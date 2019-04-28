@@ -6,7 +6,7 @@ describe('Timeline', () => {
   it('renders correctly', () => {
     const component = renderer.create(
       <Timeline>
-        <li>post</li>
+        <li>tweet</li>
       </Timeline>,
     );
     expect(component.toJSON()).toMatchSnapshot();

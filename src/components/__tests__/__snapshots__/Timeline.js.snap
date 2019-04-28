@@ -5,7 +5,7 @@ exports[`Timeline renders correctly 1`] = `
   className="Timeline-timeline-1"
 >
   <li>
-    post
+    tweet
   </li>
 </ul>
 `;
